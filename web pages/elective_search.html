@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Search</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+  <style>
+    /* Customize styles here */
+  </style>
+</head>
+<body>
+    <header class="bg-primary py-2">
+        <div class="container-fluid">
+          <div class="d-flex justify-content-between align-items-center">
+            <h1 class="text-white">Elective Search</h1>
+            <div class="container-fluid">
+                <div class="row justify-content-center align-items-center">
+                  <div class="col-md-6">
+                    <form class="d-flex">
+                      <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                      <button class="btn btn-light" type="submit">Search</button>
+                    </form>
+                    <div id="search-suggestions" class="list-group mt-2">
+                      <!-- Search suggestions will appear here -->
+                    </div>
+                  </div>
+                </div>
+              </div>
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                Profile
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+                <li><a class="dropdown-item" href="#">Log Out</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </header>
+      <p></p>  
+  </header>
+  <main class="container my-4">
+    <!-- Page content goes here -->
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add JavaScript code for search suggestions here
+    $(document).ready(function() {
+  $('#search-suggestions').hide(); // Hide suggestions by default
+  
+  $('input[type="search"]').on('input', function() {
+    var searchTerm = $(this).val();
+    if (searchTerm.length >= 3) { // Only show suggestions after at least 3 characters have been typed
+      $.ajax({
+        url: '/search-suggestions', // Replace with the URL for your search suggestions API
+        type: 'GET',
+        data: { q: searchTerm },
+        success: function(data) {
+          // Clear previous suggestions and add new ones
+          $('#search-suggestions').empty();
+          for (var i = 0; i < data.length; i++) {
+            var suggestion = data[i];
+            $('#search-suggestions').append('<a href="#" class="list-group-item list-group-item-action">' + suggestion + '</a>');
+          }
+          $('#search-suggestions').show();
+        },
+        error: function(xhr, status, error) {
+          console.error(error);
+        }
+      });
+    } else {
+      $('#search-suggestions').hide();
+    }
+  });
+});
+  </script>
+</body>
+</html>
