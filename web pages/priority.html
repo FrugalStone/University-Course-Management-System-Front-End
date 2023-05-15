@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Select Options</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
+  <style>
+    /* Customize styles here */
+    .card {
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <main class="container my-4">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Select Options
+          </div>
+          <div class="card-body">
+            <form id="option-form">
+              <ul class="list-group">
+                <li class="list-group-item">
+                  <input type="checkbox" id="option1" name="options[]" value="Option 1">
+                  <label for="option1">Option 1</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option2" name="options[]" value="Option 2">
+                  <label for="option2">Option 2</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option3" name="options[]" value="Option 3">
+                  <label for="option3">Option 3</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option4" name="options[]" value="Option 4">
+                  <label for="option4">Option 4</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option5" name="options[]" value="Option 5">
+                  <label for="option5">Option 5</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option6" name="options[]" value="Option 6">
+                  <label for="option6">Option 6</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option7" name="options[]" value="Option 7">
+                  <label for="option7">Option 7</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option8" name="options[]" value="Option 8">
+                  <label for="option8">Option 8</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option9" name="options[]" value="Option 9">
+                  <label for="option9">Option 9</label>
+                </li>
+                <li class="list-group-item">
+                  <input type="checkbox" id="option10" name="options[]" value="Option 10">
+                  <label for="option10">Option 10</label>
+                </li>
+              </ul>
+              <div class="text-end mt-3">
+                <button type="submit" class="btn btn-primary" id="proceed-btn">Proceed</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="card">
+          <div class="card-header">
+            Assign Priority
+          </div>
+          <div class="card-body">
+            <ul class="list-group" id="selected-options">
+              <!-- Selected options will appear here -->
+            </ul>
+            <form>
+              <div class="mb-3">
+                <label for="priority1" class="form-label">Option Name:</label>
+                <input type="text" class="form-control" id="priority1" placeholder="Priority">
+              </div>
+              <div class="mb-3">
+                <label for="priority2" class="form-label">Option Name:</label>
+                <input type="text" class="form-control" id="priority2" placeholder="Priority">
+              </div>
+              <div class="mb-3">
+                <label for="priority3" class="form-label">Option Name:</label>
+                <input type="text" class="form-control" id="priority3" placeholder="Priority">
+              </div>
+              <div class="mb-3">
+                <label for="priority4" class="form-label">Option Name:</label>
+                <input type="text" class="form-control" id="priority4" placeholder="Priority">
+              </div>
+              <div class="mb-3">
+                <label for="priority5" class="form-label">Option Name:</label>
+                <input type="text" class="form-control" id="priority5" placeholder="Priority">
+              </div>
+              <div class="text-end mt-3">
+                <button type="button" class="btn btn-primary" id="save-btn">Save</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    // Add JavaScript code for selecting options and assigning priority here
+    $(document).ready(function() {
+      $('#option-form').submit(function(event) {
+        event.preventDefault();
+        // Clear previous selected options
+        $('#selected-options').empty();
+        // Get selected options
+        var selectedOptions = $('input[name="options[]"]:checked');
+        if (selectedOptions.length > 5) {
+          alert('Please select up to 5 options.');
+          return;
+        }
+        // Add selected options to the list
+        selectedOptions.each(function() {
+          var option = $(this).val();
+          $('#selected-options').append('<li class="list-group-item">' + option + '</li>');
+        });
+      });
+      $('#save-btn').click(function() {
+        // Get priority values and do something with them
+        var priority1 = $('#priority1').val();
+        var priority2 = $('#priority2').val();
+        var priority3 = $('#priority3').val();
+        var priority4 = $('#priority4').val();
+        var priority5 = $('#priority5').val();
+        console.log("Priority 1: " + priority1);
+        console.log("Priority 2: " + priority2);
+        console.log("Priority 3: " + priority3);
+        console.log("Priority 4: " + priority4);
+        console.log("Priority 5: " + priority5);
+      });
+    });
+  </script>
+</body>
+</html>
