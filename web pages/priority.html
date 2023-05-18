@@ -11,6 +11,48 @@
       margin-bottom: 1rem;
     }
   </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+  $('#option-form').submit(function(event) {
+    event.preventDefault();
+    // Clear previous selected options
+    $('#selected-options').empty();
+    // Get selected options
+    var selectedOptions = $('input[name="options[]"]:checked');
+    if (selectedOptions.length > 5) {
+      alert('Please select up to 5 options.');
+      return;
+    }
+    // Disable other checkboxes if 5 options are selected
+    if (selectedOptions.length === 5) {
+      $('input[name="options[]"]').not(':checked').attr('disabled', true);
+    } else {
+      $('input[name="options[]"]').not(':checked').removeAttr('disabled');
+    }
+    // Change labels in Assign Priority section
+    selectedOptions.each(function(index) {
+      var option = $(this).val();
+      var priorityInput = $('#priority' + (index + 1));
+      priorityInput.siblings('label').text(option + " Priority");
+    });
+  });
+  // Restoring checkbox state on uncheck
+  $('input[name="options[]"]').change(function() {
+    if ($('input[name="options[]"]:checked').length !== 5) {
+      $('input[name="options[]"]').removeAttr('disabled');
+    }
+    // Reset labels to default
+    var index = $('input[name="options[]"]').index(this) + 1;
+    var priorityInput = $('#priority' + index);
+    priorityInput.siblings('label').text('Option Name:');
+  });
+});
+
+
+
+  </script>
 </head>
 <body>
   <main class="container my-4">
@@ -82,24 +124,7 @@
             </ul>
             <form>
               <div class="mb-3">
-                <label for="priority1" class="form-label">Option Name:</label>
-                <input type="text" class="form-control" id="priority1" placeholder="Priority">
-              </div>
-              <div class="mb-3">
-                <label for="priority2" class="form-label">Option Name:</label>
-                <input type="text" class="form-control" id="priority2" placeholder="Priority">
-              </div>
-              <div class="mb-3">
-                <label for="priority3" class="form-label">Option Name:</label>
-                <input type="text" class="form-control" id="priority3" placeholder="Priority">
-              </div>
-              <div class="mb-3">
-                <label for="priority4" class="form-label">Option Name:</label>
-                <input type="text" class="form-control" id="priority4" placeholder="Priority">
-              </div>
-              <div class="mb-3">
-                <label for="priority5" class="form-label">Option Name:</label>
-                <input type="text" class="form-control" id="priority5" placeholder="Priority">
+                
               </div>
               <div class="text-end mt-3">
                 <button type="button" class="btn btn-primary" id="save-btn">Save</button>
@@ -127,7 +152,7 @@
         // Add selected options to the list
         selectedOptions.each(function() {
           var option = $(this).val();
-          $('#selected-options').append('<li class="list-group-item">' + option + '</li>');
+          $('#selected-options').append('<li class="list-group-item">' + option + '</li>' + '<input type="text" class="form-control" id="priority1" placeholder="Priority">');
         });
       });
       $('#save-btn').click(function() {
