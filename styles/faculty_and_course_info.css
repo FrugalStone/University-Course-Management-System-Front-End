@@ -1,115 +1,114 @@
 /* CSS code for faculty and course details webpage */
 
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  }
-  
-  /* Header styling */
-  
-  header {
-    background-color: #005b99;
-    color: #fff;
-    text-align: center;
-    padding: 20px;
-  }
-  
-  header h1 {
-    margin: 0;
-  }
-  
-  /* Navigation styling */
-  
-  nav {
-    background-color: #f2f2f2;
-    border: 1px solid #ddd;
-    height: 40px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-  }
-  
-  nav li {
-    margin: 0 10px;
-  }
-  
-  nav a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-  }
-  
-  nav a:hover {
-    background-color: #ddd;
-  }
-  
-  /* Main content styling */
-  
-  .container {
-    max-width: 1000px;
-    margin: 20px auto;
-    padding: 0 20px;
-  }
-  
-  /* Faculty and course details styling */
-  
-  .details {
-    display: flex;
-    justify-content: space-between;
-    margin: 20px 0;
-  }
-  
-  .details img {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border: 1px solid #ddd;
-    border-radius: 50%;
-    margin-right: 20px;
-  }
-  
-  .details h2 {
-    margin: 0;
-  }
-  
-  .details p {
-    margin: 10px 0;
-  }
-  
-  .course-list {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .course-list li {
-    margin: 10px 0;
-    padding: 10px;
-    border: 1px solid #ddd;
-  }
-  
-  .course-list li:hover {
-    background-color: #f2f2f2;
-    cursor: pointer;
-  }
-  
-  /* Footer styling */
-  
-  footer {
-    background-color: #005b99;
-    color: #fff;
-    text-align: center;
-    padding: 10px;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-  }
-  
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Header styling */
+
+header {
+  background-color: #005b99;
+  color: #fff;
+  text-align: center;
+  padding: 20px;
+}
+
+header h1 {
+  margin: 0;
+}
+
+/* Navigation styling */
+
+nav {
+  background-color: #f2f2f2;
+  border: 1px solid #ddd;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+}
+
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+}
+
+nav li {
+  margin: 0 10px;
+}
+
+nav a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: 1px solid #ddd;
+}
+
+nav a:hover {
+  background-color: #ddd;
+}
+
+/* Main content styling */
+
+.container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 20px;
+}
+
+/* Faculty and course details styling */
+
+.details {
+  display: flex;
+  justify-content: space-between;
+  margin: 20px 0;
+}
+
+.details img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  margin-right: 20px;
+}
+
+.details h2 {
+  margin: 0;
+}
+
+.details p {
+  margin: 10px 0;
+}
+
+.course-list {
+  list-style: none;
+  padding: 0;
+}
+
+.course-list li {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.course-list li:hover {
+  background-color: #f2f2f2;
+  cursor: pointer;
+}
+
+/* Footer styling */
+
+footer {
+  background-color: #005b99;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}

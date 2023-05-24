@@ -91,13 +91,16 @@ nav ul li a:hover {
     background-color: #333;
     color: #fff;
 }
-#nav-toggle:checked + nav {
+
+#nav-toggle:checked+nav {
     display: block;
 }
-#nav-toggle:checked ~ header,
-#nav-toggle:checked ~ footer {
+
+#nav-toggle:checked~header,
+#nav-toggle:checked~footer {
     background-color: #666;
 }
+
 /* Style for the button */
 #nav-toggle {
     position: fixed;
