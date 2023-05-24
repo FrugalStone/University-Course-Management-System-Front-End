@@ -16,19 +16,19 @@ document.addEventListener("keydown", resetIdleTime);
 
 // Function to increment the idle time counter
 function incrementIdleTime() {
-    idleTime += 1;
-    if (idleTime >= TIMEOUT_DURATION / 60000) {
-        logout();
-    }
+  idleTime += 1;
+  if (idleTime >= TIMEOUT_DURATION / 60000) {
+    logout();
+  }
 }
 
 // Function to reset the idle time counter
 function resetIdleTime() {
-    idleTime = 0;
+  idleTime = 0;
 }
 
 // Function to log out the user
 function logout() {
-    clearInterval(idleInterval);
-    window.location.href = LOGOUT_URL;
+  clearInterval(idleInterval);
+  window.location.href = LOGOUT_URL;
 }

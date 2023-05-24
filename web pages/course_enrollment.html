@@ -1,50 +1,47 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <title>Course Selection</title>
+    <link rel="stylesheet" href="course_enrollment.css" />
+    <script src="idlelogout.js"></script>
+  </head>
 
-<head>
-	<title>Course Selection</title>
-	<link rel="stylesheet" href="course_enrollment.css">
-	<script src="idlelogout.js"></script>
+  <body>
+    <header>
+      <h1>Course Selection</h1>
+      <nav>
+        <ul>
+          <li><a href="#">Home</a></li>
+          <li><a href="#">Courses</a></li>
+          <li><a href="#">Enrollment</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </nav>
+    </header>
 
-</head>
+    <main>
+      <h2>Select Your Courses</h2>
+      <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" /><br />
 
-<body>
-	<header>
-		<h1>Course Selection</h1>
-		<nav>
-			<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Courses</a></li>
-				<li><a href="#">Enrollment</a></li>
-				<li><a href="#">Contact</a></li>
-			</ul>
-		</nav>
-	</header>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" /><br />
 
-	<main>
-		<h2>Select Your Courses</h2>
-		<form>
-			<label for="name">Name:</label>
-			<input type="text" id="name" name="name"><br>
+        <label for="courses">Select your courses:</label>
+        <select id="courses" name="courses" multiple>
+          <option value="webdev">Web Development</option>
+          <option value="datasci">Data Science</option>
+          <option value="ml">Machine Learning</option>
+          <option value="cloudcomp">Cloud Computing</option></select
+        ><br />
 
-			<label for="email">Email:</label>
-			<input type="email" id="email" name="email"><br>
+        <input type="submit" value="Submit" />
+      </form>
+    </main>
 
-			<label for="courses">Select your courses:</label>
-			<select id="courses" name="courses" multiple>
-				<option value="webdev">Web Development</option>
-				<option value="datasci">Data Science</option>
-				<option value="ml">Machine Learning</option>
-				<option value="cloudcomp">Cloud Computing</option>
-			</select><br>
-
-			<input type="submit" value="Submit">
-		</form>
-	</main>
-
-	<footer>
-		<p>&copy; 2023 Course Selection</p>
-	</footer>
-</body>
-
+    <footer>
+      <p>&copy; 2023 Course Selection</p>
+    </footer>
+  </body>
 </html>

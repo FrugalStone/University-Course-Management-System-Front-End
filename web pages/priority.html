@@ -1,104 +1,117 @@
+<!-- Refactoring this code has cost me years of my life. -->
+
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Select Options</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
-  <style>
-    /* Customize styles here */
-    .card {
-      margin-bottom: 1rem;
-    }
-  </style>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
-  <script>
-    $(document).ready(function () {
-      $('#option-form').submit(function (event) {
-        event.preventDefault();
-        // Clear previous selected options
-        $('#selected-options').empty();
-        // Get selected options
-        var selectedOptions = $('input[name="options[]"]:checked');
-        if (selectedOptions.length > 5) {
-          alert('Please select up to 5 options.');
-          return;
-        }
-        // Disable other checkboxes if 5 options are selected
-        $('input[name="options[]"]').not(':checked').attr('disabled', selectedOptions.length === 5);
-        // Change labels in Assign Priority section and add dropdowns
-        selectedOptions.each(function (index) {
-          var option = $(this).val();
-          var priorityInput = $('<select>', {
-            class: 'form-control',
-            id: 'priority' + (index + 1)
-          });
-          // Add options for priorities
-          for (var i = 1; i <= selectedOptions.length; i++) {
-            priorityInput.append($('<option>', {
-              value: i,
-              text: i
-            }));
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Select Options</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* Customize styles here */
+      .card {
+        margin-bottom: 1rem;
+      }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        $("#option-form").submit(function (event) {
+          event.preventDefault();
+          // Clear previous selected options
+          $("#selected-options").empty();
+          // Get selected options
+          var selectedOptions = $('input[name="options[]"]:checked');
+          if (selectedOptions.length > 5) {
+            alert("Please select up to 5 options.");
+            return;
           }
-          $('#selected-options').append($('<li>', {
-            class: 'list-group-item',
-            text: option
-          }).append(priorityInput));
+          // Disable other checkboxes if 5 options are selected
+          $('input[name="options[]"]')
+            .not(":checked")
+            .attr("disabled", selectedOptions.length === 5);
+          // Change labels in Assign Priority section and add dropdowns
+          selectedOptions.each(function (index) {
+            var option = $(this).val();
+            var priorityInput = $("<select>", {
+              class: "form-control",
+              id: "priority" + (index + 1),
+            });
+            // Add options for priorities
+            for (var i = 1; i <= selectedOptions.length; i++) {
+              priorityInput.append(
+                $("<option>", {
+                  value: i,
+                  text: i,
+                })
+              );
+            }
+            $("#selected-options").append(
+              $("<li>", {
+                class: "list-group-item",
+                text: option,
+              }).append(priorityInput)
+            );
+          });
+        });
+
+        // Restoring checkbox state on uncheck and resetting labels
+        $('input[name="options[]"]').change(function () {
+          $('input[name="options[]"]').not(":checked").removeAttr("disabled");
+          var index = $('input[name="options[]"]').index(this) + 1;
+          var priorityInput = $("#priority" + index);
+          priorityInput.siblings("label").text("Option Name:");
+        });
+
+        // Save button click event
+        $("#save-btn").click(function () {
+          var priorityValues = $('select[id^="priority"]')
+            .map(function () {
+              return $(this).val();
+            })
+            .get();
+          console.log("Priority values: ", priorityValues);
         });
       });
-
-      // Restoring checkbox state on uncheck and resetting labels
-      $('input[name="options[]"]').change(function () {
-        $('input[name="options[]"]').not(':checked').removeAttr('disabled');
-        var index = $('input[name="options[]"]').index(this) + 1;
-        var priorityInput = $('#priority' + index);
-        priorityInput.siblings('label').text('Option Name:');
-      });
-
-      // Save button click event
-      $('#save-btn').click(function () {
-        var priorityValues = $('select[id^="priority"]').map(function () {
-          return $(this).val();
-        }).get();
-        console.log("Priority values: ", priorityValues);
-      });
-    });
-  </script>
-
-
-
-</head>
-
-<body>
-  <header class="bg-primary py-2">
-    <div class="container-fluid">
-      <div class="d-flex justify-content-between align-items-center">
-        <h1 class="text-white">Welcome Vinayak</h1>
-        <div class="dropdown">
-          <button class="btn btn-secondary dropdown-toggle" type="button" id="profileDropdown" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            Profile
-          </button>
-          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
-            <li><a class="dropdown-item" href="#">Edit Profile</a></li>
-            <li><a class="dropdown-item" href="#">Log Out</a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </header>
+    </script>
+  </head>
 
   <body>
-    <main class="container my-4">
+    <header class="bg-primary py-2">
+      <div class="container-fluid">
+        <div class="d-flex justify-content-between align-items-center">
+          <h1 class="text-white">Welcome Vinayak</h1>
+          <div class="dropdown">
+            <button
+              class="btn btn-secondary dropdown-toggle"
+              type="button"
+              id="profileDropdown"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              Profile
+            </button>
+            <ul
+              class="dropdown-menu dropdown-menu-end"
+              aria-labelledby="profileDropdown"
+            >
+              <li><a class="dropdown-item" href="#">Edit Profile</a></li>
+              <li><a class="dropdown-item" href="#">Log Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
 
+    <main class="container my-4">
       <div class="row">
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">
-              Select Options
-            </div>
+            <div class="card-header">Select Options</div>
             <div class="container">
               <div class="row">
                 <div class="col">
@@ -106,20 +119,44 @@
                     <div class="row">
                       <div class="col">
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="option" id="option1" value="option1">
-                          <label class="form-check-label" for="option1">Option 1</label>
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="option"
+                            id="option1"
+                            value="option1"
+                          />
+                          <label class="form-check-label" for="option1"
+                            >Option 1</label
+                          >
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="option" id="option2" value="option2">
-                          <label class="form-check-label" for="option2">Option 2</label>
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="option"
+                            id="option2"
+                            value="option2"
+                          />
+                          <label class="form-check-label" for="option2"
+                            >Option 2</label
+                          >
                         </div>
                       </div>
                       <div class="col">
                         <div class="form-check form-check-inline">
-                          <input class="form-check-input" type="radio" name="option" id="option3" value="option3">
-                          <label class="form-check-label" for="option3">Option 3</label>
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="option"
+                            id="option3"
+                            value="option3"
+                          />
+                          <label class="form-check-label" for="option3"
+                            >Option 3</label
+                          >
                         </div>
                       </div>
                     </div>
@@ -134,7 +171,12 @@
                   <li class="list-group-item">
                     <details>
                       <summary>
-                        <input type="checkbox" id="option1" name="options[]" value="Option 1">
+                        <input
+                          type="checkbox"
+                          id="option1"
+                          name="options[]"
+                          value="Option 1"
+                        />
                         <label for="option1">Option 1</label>
                       </summary>
                       <div class="expanded-details">
@@ -145,7 +187,12 @@
                   <li class="list-group-item">
                     <details>
                       <summary>
-                        <input type="checkbox" id="option2" name="options[]" value="Option 2">
+                        <input
+                          type="checkbox"
+                          id="option2"
+                          name="options[]"
+                          value="Option 2"
+                        />
                         <label for="option2">Option 2</label>
                       </summary>
                       <div class="expanded-details">
@@ -157,7 +204,12 @@
                   <li class="list-group-item">
                     <details>
                       <summary>
-                        <input type="checkbox" id="option10" name="options[]" value="Option 10">
+                        <input
+                          type="checkbox"
+                          id="option10"
+                          name="options[]"
+                          value="Option 10"
+                        />
                         <label for="option10">Option 10</label>
                       </summary>
                       <div class="expanded-details">
@@ -167,28 +219,31 @@
                   </li>
                 </ul>
                 <div class="text-end mt-3">
-                  <button type="submit" class="btn btn-primary" id="proceed-btn">Proceed</button>
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                    id="proceed-btn"
+                  >
+                    Proceed
+                  </button>
                 </div>
               </form>
             </div>
-
           </div>
         </div>
         <div class="col-md-6">
           <div class="card">
-            <div class="card-header">
-              Assign Priority
-            </div>
+            <div class="card-header">Assign Priority</div>
             <div class="card-body">
               <ul class="list-group" id="selected-options">
                 <!-- Selected options will appear here -->
               </ul>
               <form>
-                <div class="mb-3">
-
-                </div>
+                <div class="mb-3"></div>
                 <div class="text-end mt-3">
-                  <button type="button" class="btn btn-primary" id="save-btn">Save</button>
+                  <button type="button" class="btn btn-primary" id="save-btn">
+                    Save
+                  </button>
                 </div>
               </form>
             </div>
@@ -196,9 +251,5 @@
         </div>
       </div>
     </main>
-
-
-
   </body>
-
 </html>
