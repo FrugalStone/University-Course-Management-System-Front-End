@@ -27,33 +27,37 @@
           return;
         }
         // Disable other checkboxes if 5 options are selected
-        if (selectedOptions.length === 5) {
-          $('input[name="options[]"]').not(':checked').attr('disabled', true);
-        } else {
-          $('input[name="options[]"]').not(':checked').removeAttr('disabled');
-        }
+        $('input[name="options[]"]').not(':checked').attr('disabled', selectedOptions.length === 5);
         // Change labels in Assign Priority section
         selectedOptions.each(function (index) {
           var option = $(this).val();
           var priorityInput = $('#priority' + (index + 1));
+          priorityInput.empty(); // Clear any existing options
+  
+          // Add options for priorities
+          for (var i = 1; i <= selectedOptions.length; i++) {
+            priorityInput.append($('<option>', {
+              value: i,
+              text: i
+            }));
+          }
+  
           priorityInput.siblings('label').text(option + " Priority");
         });
       });
+  
       // Restoring checkbox state on uncheck
       $('input[name="options[]"]').change(function () {
-        if ($('input[name="options[]"]:checked').length !== 5) {
-          $('input[name="options[]"]').removeAttr('disabled');
-        }
+        $('input[name="options[]"]').not(':checked').removeAttr('disabled');
         // Reset labels to default
         var index = $('input[name="options[]"]').index(this) + 1;
         var priorityInput = $('#priority' + index);
         priorityInput.siblings('label').text('Option Name:');
       });
     });
-
-
-
   </script>
+  
+  
 </head>
 
 <body>
@@ -183,7 +187,6 @@
     </main>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/js/bootstrap.bundle.min.js"></script>
     <script>
-      // Add JavaScript code for selecting options and assigning priority here
       $(document).ready(function () {
         $('#option-form').submit(function (event) {
           event.preventDefault();
@@ -195,27 +198,32 @@
             alert('Please select up to 5 options.');
             return;
           }
-          // Add selected options to the list
-          selectedOptions.each(function () {
+          // Add selected options and priority dropdowns to the list
+          selectedOptions.each(function (index) {
             var option = $(this).val();
-            $('#selected-options').append('<li class="list-group-item">' + option + '</li>' + '<input type="text" class="form-control" id="priority1" placeholder="Priority">');
+            var optionHtml = '<li class="list-group-item">' + option + '</li>';
+            var dropdownOptions = '';
+            for (var i = 1; i <= selectedOptions.length; i++) {
+              dropdownOptions += '<option value="' + i + '">' + i + '</option>';
+            }
+            var dropdownHtml = '<select class="form-control" id="priority' + (index + 1) + '">' + dropdownOptions + '</select>';
+            $('#selected-options').append(optionHtml + dropdownHtml);
           });
         });
+    
         $('#save-btn').click(function () {
           // Get priority values and do something with them
-          var priority1 = $('#priority1').val();
-          var priority2 = $('#priority2').val();
-          var priority3 = $('#priority3').val();
-          var priority4 = $('#priority4').val();
-          var priority5 = $('#priority5').val();
-          console.log("Priority 1: " + priority1);
-          console.log("Priority 2: " + priority2);
-          console.log("Priority 3: " + priority3);
-          console.log("Priority 4: " + priority4);
-          console.log("Priority 5: " + priority5);
+          var priorityValues = [];
+          $('select[id^="priority"]').each(function () {
+            var priority = $(this).val();
+            priorityValues.push(priority);
+          });
+          console.log("Priority values: ", priorityValues);
         });
       });
     </script>
+    
+    
   </body>
 
 </html>
