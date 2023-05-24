@@ -77,54 +77,78 @@
 
   <body>
     <main class="container my-4">
+
       <div class="row">
         <div class="col-md-6">
           <div class="card">
             <div class="card-header">
               Select Options
             </div>
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="option" id="option1" value="option1">
+                          <label class="form-check-label" for="option1">Option 1</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="option" id="option2" value="option2">
+                          <label class="form-check-label" for="option2">Option 2</label>
+                        </div>
+                      </div>
+                      <div class="col">
+                        <div class="form-check form-check-inline">
+                          <input class="form-check-input" type="radio" name="option" id="option3" value="option3">
+                          <label class="form-check-label" for="option3">Option 3</label>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="card-body">
               <form id="option-form">
                 <ul class="list-group">
                   <li class="list-group-item">
-                    <input type="checkbox" id="option1" name="options[]" value="Option 1">
-                    <label for="option1">Option 1</label>
+                    <details>
+                      <summary>
+                        <input type="checkbox" id="option1" name="options[]" value="Option 1">
+                        <label for="option1">Option 1</label>
+                      </summary>
+                      <div class="expanded-details">
+                        <p>Details about Option 1 go here.</p>
+                      </div>
+                    </details>
                   </li>
                   <li class="list-group-item">
-                    <input type="checkbox" id="option2" name="options[]" value="Option 2">
-                    <label for="option2">Option 2</label>
+                    <details>
+                      <summary>
+                        <input type="checkbox" id="option2" name="options[]" value="Option 2">
+                        <label for="option2">Option 2</label>
+                      </summary>
+                      <div class="expanded-details">
+                        <p>Details about Option 2 go here.</p>
+                      </div>
+                    </details>
                   </li>
+                  <!-- Repeat the pattern for options 3 to 10 -->
                   <li class="list-group-item">
-                    <input type="checkbox" id="option3" name="options[]" value="Option 3">
-                    <label for="option3">Option 3</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option4" name="options[]" value="Option 4">
-                    <label for="option4">Option 4</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option5" name="options[]" value="Option 5">
-                    <label for="option5">Option 5</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option6" name="options[]" value="Option 6">
-                    <label for="option6">Option 6</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option7" name="options[]" value="Option 7">
-                    <label for="option7">Option 7</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option8" name="options[]" value="Option 8">
-                    <label for="option8">Option 8</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option9" name="options[]" value="Option 9">
-                    <label for="option9">Option 9</label>
-                  </li>
-                  <li class="list-group-item">
-                    <input type="checkbox" id="option10" name="options[]" value="Option 10">
-                    <label for="option10">Option 10</label>
+                    <details>
+                      <summary>
+                        <input type="checkbox" id="option10" name="options[]" value="Option 10">
+                        <label for="option10">Option 10</label>
+                      </summary>
+                      <div class="expanded-details">
+                        <p>Details about Option 10 go here.</p>
+                      </div>
+                    </details>
                   </li>
                 </ul>
                 <div class="text-end mt-3">
@@ -132,6 +156,7 @@
                 </div>
               </form>
             </div>
+
           </div>
         </div>
         <div class="col-md-6">
